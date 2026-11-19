@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Render</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 36px;
+      background: #ffffff;
+      color: #000000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+    }
+
+    form {
+      max-width: 1010px;
+    }
+
+    /* The three boxes: General Info, Misc., Staff */
+    fieldset {
+      margin: 0 0 10px 0;
+      padding: 4px 13px 12px;
+      border: 1px solid #c4c4c4;
+      border-radius: 6px;
+    }
+
+    legend {
+      padding: 0 2px;
+    }
+
+    /* Each line = label on the left (20%), input on the right (80%) */
+    .row {
+      display: grid;
+      grid-template-columns: 20% 80%;
+      align-items: center;
+      margin-bottom: 9px;
+    }
+
+    .row:last-child {
+      margin-bottom: 0;
+    }
+
+    .row.top {
+      align-items: start;
+    }
+
+    /* Text, number and email boxes */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"] {
+      width: 240px;
+      height: 32px;
+      padding: 4px 8px;
+      border: 1px solid #767676;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 16px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 124px;
+      padding: 6px 8px;
+      border: 1px solid #767676;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 16px;
+    }
+
+    select {
+      height: 40px;
+      padding: 0 6px 0 8px;
+      border: 1px solid #767676;
+      border-radius: 3px;
+      background: #ffffff;
+      font-family: inherit;
+      font-size: 16px;
+    }
+
+    /* Checkboxes and radio buttons sit next to their text */
+    .choices input {
+      margin: 0 2px 0 4px;
+      vertical-align: middle;
+    }
+
+    .choices label {
+      vertical-align: middle;
+    }
+
+    /* Blue button on the right */
+    .actions {
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    button {
+      padding: 9px 10px;
+      border: 1px solid #00003a;
+      border-radius: 5px;
+      background: #0000ff;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 17px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <form action="https://teach-backend-fawn.vercel.app/api/product"
+        method="POST"
+        enctype="multipart/form-data">
+
+    <fieldset>
+      <legend>General Info</legend>
+
+      <div class="row">
+        <label for="itemName">Item Name</label>
+        <div><input type="text" id="itemName" name="itemName"></div>
+      </div>
+
+      <div class="row top">
+        <label for="itemDescription">Description</label>
+        <textarea id="itemDescription" name="itemDescription"></textarea>
+      </div>
+
+      <div class="row">
+        <label for="category">Category</label>
+        <div>
+          <select id="category" name="category">
+            <option value="notSpecified" selected>notSpecified</option>
+            <option value="consumption">consumption</option>
+            <option value="household">household</option>
+            <option value="electronic">electronic</option>
+            <option value="gadget">gadget</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Misc.</legend>
+
+      <div class="row">
+        <label for="inventoryAmount">Inventory Amount</label>
+        <div><input type="number" id="inventoryAmount" name="inventoryAmount" min="0"></div>
+      </div>
+
+      <div class="row">
+        <label for="listPrice">List price</label>
+        <div><input type="number" id="listPrice" name="listPrice" min="0" step="0.01"></div>
+      </div>
+
+      <div class="row">
+        <span>Available Stores</span>
+        <div class="choices">
+          <input type="checkbox" id="storeBangkok" name="availableStore[]" value="Bangkok"><label for="storeBangkok">Bangkok</label>
+          <input type="checkbox" id="storePattaya" name="availableStore[]" value="Pattaya"><label for="storePattaya">Pattaya</label>
+          <input type="checkbox" id="storePhuket" name="availableStore[]" value="Phuket"><label for="storePhuket">Phuket</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <span>Status</span>
+        <div class="choices">
+          <input type="radio" id="statusActive" name="status" value="Active"><label for="statusActive">Active</label>
+          <input type="radio" id="statusInactive" name="status" value="Inactive"><label for="statusInactive">Inactive</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Staff</legend>
+
+      <div class="row">
+        <label for="staffEmail">Staff Email</label>
+        <div><input type="email" id="staffEmail" name="staffEmail"></div>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit">Submit Form</button>
+    </div>
+
+  </form>
+
+</body>
+</html>
